@@ -1,0 +1,33 @@
+/* ==========================================================================
+   MAIN STYLE AGGREGATOR
+   Network Engineering Portfolio
+   ========================================================================== */
+
+@import url('variables.css');
+@import url('base.css');
+@import url('components.css');
+@import url('sections.css');
+
+/* Smooth animation keyframes & subtle glow additions */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    box-shadow: 0 0 20px var(--cyan-glow);
+  }
+  20%, 24%, 55% {
+    box-shadow: none;
+  }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: var(--cyan-primary);
+  vertical-align: middle;
+  animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Engineer Portfolio | Infrastruktur Jaringan & Cyber Telemetry</title>
+  <meta name="description" content="Portofolio mahasiswa calon Network Engineer: Spesialisasi Enterprise Routing & Switching, Network Automation, pfSense Firewall, dan SD-WAN.">
+  <meta name="keywords" content="Network Engineer, Portofolio Mahasiswa Jaringan, Cisco CCNA, MikroTik MTCNA, OSPF, BGP, Netmiko, Python Automation, WireGuard, Subnet Calculator">
+  <meta name="author" content="Network Engineer Candidate">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-icon">⚡</span>
+        <span>NET<span class="highlight">://</span>NOC</span>
+        <span class="brand-badge">AS64512</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#terminal" class="nav-link">NOC Terminal</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#subnet-calc" class="nav-link">Subnet Calc</a>
+        <a href="#projects" class="nav-link">Labs & Projects</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          <span>LINK: UP | <span id="live-latency-ticker">12ms</span></span>
+        </div>
+        <a href="#terminal" class="btn btn-secondary btn-sm" title="Buka Terminal CLI">
+          <code>&gt;_ CLI</code>
+        </a>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Buka menu navigasi">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION: HEADLINE & INTERACTIVE TOPOLOGY CANVAS
+         ====================================================================== -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-status-bar">
+            <span class="section-tag">
+              <span class="pulse-dot"></span>
+              PORTFOLIO // NETWORK ENGINEER CANDIDATE
+            </span>
+            <span class="hero-ip-badge">SRC: 192.168.1.0/24</span>
+          </div>
+
+          <h1 class="hero-title">
+            Membangun, Mengamankan & Mengoptimalkan <span class="highlight">Infrastruktur Jaringan</span>
+          </h1>
+
+          <p class="hero-lead">
+            Mahasiswa Teknik Informatika berfokus pada <strong>Enterprise Routing & Switching</strong>, 
+            <strong>Network Security</strong>, serta <strong>Network Automation</strong> berbasis Python & Ansible. Berdedikasi menjaga ketersediaan konektivitas 99.9% uptime.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Jelajahi Lab & Proyek</span>
+            </a>
+            <a href="#terminal" class="btn btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <span>Akses CLI Terminal</span>
+            </a>
+            <a href="#subnet-calc" class="btn btn-terminal">
+              <span>🧮 CIDR Calculator</span>
+            </a>
+          </div>
+
+          <div class="hero-specs">
+            <div class="spec-item">
+              <h4>99.9%</h4>
+              <p>High-Availability Mindset</p>
+            </div>
+            <div class="spec-item">
+              <h4>20+</h4>
+              <p>Simulasi Lab GNS3 & Packet Tracer</p>
+            </div>
+            <div class="spec-item">
+              <h4>&lt; 45s</h4>
+              <p>Automated Push via Netmiko</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Network Topology Canvas -->
+        <div class="hero-visual">
+          <div class="hero-visual-card">
+            <div class="topology-header">
+              <div class="topology-title">
+                <span class="pulse-dot"></span>
+                <span>ENTERPRISE BACKBONE TOPOLOGY</span>
+              </div>
+              <div class="topology-live-stats">PACKET FLOW: ACTIVE</div>
+            </div>
+
+            <canvas id="network-canvas" width="550" height="380"></canvas>
+
+            <div class="topology-footer">
+              <div class="topology-legend">
+                <div class="legend-item"><span class="legend-color" style="background:#00f2fe;"></span> Router</div>
+                <div class="legend-item"><span class="legend-color" style="background:#10b981;"></span> Switch</div>
+                <div class="legend-item"><span class="legend-color" style="background:#ef4444;"></span> Firewall</div>
+                <div class="legend-item"><span class="legend-color" style="background:#38bdf8;"></span> WAN/ISP</div>
+              </div>
+              <span>Klik canvas untuk kirim ping burst!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         NOC TERMINAL SECTION
+         ====================================================================== -->
+    <section id="terminal" class="section terminal-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">&gt;_ INTERACTIVE NOC CONSOLE</span>
+          <h2 class="section-title">Uji Diagnostik <span class="highlight">Jaringan Secara Langsung</span></h2>
+          <p class="section-subtitle">
+            Ketik perintah CLI standar (seperti <code>ping</code>, <code>traceroute</code>, <code>show ip route</code>, <code>skills</code>) atau klik chip pintasan di bawah.
+          </p>
+        </div>
+
+        <div class="terminal-card" id="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+            </div>
+            <div class="terminal-title">
+              <span>cisco-core-rtr01.noc.local (ssh:22)</span>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--green-online);">
+              SESSION: ESTABLISHED
+            </div>
+          </div>
+
+          <div class="terminal-body" id="terminal-output">
+            <!-- Dynamic terminal lines generated by terminal.js -->
+          </div>
+
+          <div class="terminal-input-row" style="padding: 0.85rem 1.25rem; background: #070a10; border-top: 1px solid rgba(255,255,255,0.06);">
+            <span class="terminal-prompt">admin@core-rtr01#</span>
+            <input type="text" id="terminal-input" class="terminal-input" placeholder="Ketik perintah (contoh: ping 8.8.8.8, show ip route, help)..." autocomplete="off" spellcheck="false">
+          </div>
+
+          <div class="terminal-chips">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); align-self: center;">Quick Run:</span>
+            <button class="chip-btn" data-cmd="ping 8.8.8.8">ping 8.8.8.8</button>
+            <button class="chip-btn" data-cmd="traceroute 1.1.1.1">traceroute 1.1.1.1</button>
+            <button class="chip-btn" data-cmd="show ip route">show ip route</button>
+            <button class="chip-btn" data-cmd="show ip int brief">show ip int brief</button>
+            <button class="chip-btn" data-cmd="skills">skills</button>
+            <button class="chip-btn" data-cmd="projects">projects</button>
+            <button class="chip-btn" data-cmd="whoami">whoami</button>
+            <button class="chip-btn" data-cmd="cat resume.txt">cat resume.txt</button>
+            <button class="chip-btn" data-cmd="clear">clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ABOUT & PROFILE SECTION
+         ====================================================================== -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text">
+            <span class="section-tag">ENGINEER PROFILE</span>
+            <h2 class="section-title">Dedikasi Pada <span class="highlight">Keandalan Infrastruktur</span></h2>
+            <p>
+              Halo! Saya adalah mahasiswa teknik yang memiliki fokus mendalam pada dunia <strong>Network Engineering</strong>. Ketertarikan saya dimulai dari rasa ingin tahu bagaimana ribuan paket data berpindah melintasi benua dalam hitungan milidetik.
+            </p>
+            <p>
+              Saya aktif mempraktikkan konfigurasi <strong>Enterprise Routing (OSPF, BGP)</strong>, 
+              <strong>Switching L2/L3 (VLAN, STP, EtherChannel)</strong>, implementasi <strong>Firewall & VPN (pfSense, WireGuard, IPsec)</strong>, 
+              serta mulai mengadopsi <strong>Network Programmability</strong> menggunakan Python Netmiko dan Ansible untuk mengotomasi operasional NOC modern.
+            </p>
+
+            <div class="about-features">
+              <div class="feature-box">
+                <div class="feature-icon">🛡️</div>
+                <h4>Zero-Trust Mindset</h4>
+                <p>Isolasi segmen sensitif dengan DMZ, strict firewall rules, dan 802.1X port auth.</p>
+              </div>
+              <div class="feature-box">
+                <div class="feature-icon">⚙️</div>
+                <h4>NetDevOps & Code</h4>
+                <p>Otomatisasi backup konfigurasi, audit kepatuhan, dan integrasi API perangkat.</p>
+              </div>
+              <div class="feature-box">
+                <div class="feature-icon">🔍</div>
+                <h4>Deep Packet Inspection</h4>
+                <p>Menganalisis anomali TCP retransmission, DNS leak, dan latency lewat Wireshark.</p>
+              </div>
+              <div class="feature-box">
+                <div class="feature-icon">🌐</div>
+                <h4>Multi-Vendor Ready</h4>
+                <p>Familiar dengan Cisco IOS, MikroTik RouterOS, Linux Networking, dan Open-Source appliances.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-architecture-card">
+            <div class="arch-header">
+              <h3 style="font-size: 1.15rem; font-family: var(--font-mono); color: var(--cyan-primary);">
+                [ PROTOCOL STACK MASTERY ]
+              </h3>
+              <span class="status-pill"><span class="pulse-dot"></span> OSI / TCP-IP</span>
+            </div>
+
+            <div class="arch-layer-list">
+              <div class="arch-layer">
+                <div class="layer-title">
+                  <span>Layer 7 - Application</span>
+                  <span style="color: var(--cyan-primary);">DNS, DHCP, SSH, SNMPv3, HTTP/S, BGP</span>
+                </div>
+                <div class="layer-desc">Manajemen service, load balancer, remote SSH hardening, dan telemetri perangkat.</div>
+              </div>
+
+              <div class="arch-layer transport">
+                <div class="layer-title">
+                  <span>Layer 4 - Transport</span>
+                  <span style="color: var(--blue-accent);">TCP (SYN/ACK, Windowing), UDP, Ports</span>
+                </div>
+                <div class="layer-desc">Troubleshooting TCP handshake latency, packet loss, dan firewall state table monitoring.</div>
+              </div>
+
+              <div class="arch-layer network">
+                <div class="layer-title">
+                  <span>Layer 3 - Network</span>
+                  <span style="color: var(--green-online);">IPv4, IPv6, OSPF, BGP, ICMP, NAT/PAT</span>
+                </div>
+                <div class="layer-desc">CIDR subnetting, dynamic multi-area routing, route summarization, dan failover HSRP/VRRP.</div>
+              </div>
+
+              <div class="arch-layer datalink">
+                <div class="layer-title">
+                  <span>Layer 2 - Data Link</span>
+                  <span style="color: var(--amber-warning);">VLAN 802.1Q, STP/RSTP, LACP, ARP, MAC</span>
+                </div>
+                <div class="layer-desc">Pencegahan switching loops, redundant link bundling, dan port-security MAC limit.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SKILLS & TECH STACK SECTION
+         ====================================================================== -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CAPABILITIES MATRIX</span>
+          <h2 class="section-title">Keahlian & <span class="highlight">Teknologi Jaringan</span></h2>
+          <p class="section-subtitle">
+            Kombinasi fundamental networking yang kuat, kecakapan implementasi security, dan otomatisasi modern.
+          </p>
+        </div>
+
+        <div class="skills-categories" id="skills-container">
+          <!-- Rendered dynamically by main.js from projects-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         UTILITY: LIVE CIDR SUBNET CALCULATOR
+         ====================================================================== -->
+    <section id="subnet-calc" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">ENGINEER TOOLKIT</span>
+          <h2 class="section-title">Live IPv4 <span class="highlight">CIDR Subnet Calculator</span></h2>
+          <p class="section-subtitle">
+            Kalkulator bitwise real-time untuk menghitung Network ID, Broadcast, Subnet Mask, Wildcard Mask Cisco, dan rentang Host IP yang valid.
+          </p>
+        </div>
+
+        <div class="calc-card">
+          <div class="calc-form">
+            <div class="calc-field">
+              <label for="calc-ip">Alamat IP Host (IPv4 Address):</label>
+              <input type="text" id="calc-ip" class="calc-input" value="192.168.10.50" placeholder="e.g. 172.16.20.1">
+            </div>
+
+            <div class="calc-field">
+              <label for="calc-mask">Subnet Mask Prefix (CIDR):</label>
+              <select id="calc-mask" class="calc-input">
+                <!-- Dynamically populated by subnet-calc.js -->
+              </select>
+            </div>
+
+            <div class="calc-field" style="display: flex; align-items: flex-end;">
+              <button class="btn btn-primary" type="button" onclick="window.SubnetCalculator && window.SubnetCalculator.prototype.calculate ? null : null">
+                <span>Hitung Otomatis</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="calc-results-grid" id="calc-results">
+            <!-- Results populated by subnet-calc.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         NETWORK LABS & PROJECTS SHOWCASE
+         ====================================================================== -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">TOPOLOGY & LAB SHOWCASE</span>
+          <h2 class="section-title">Laboratorium & <span class="highlight">Proyek Infrastruktur</span></h2>
+          <p class="section-subtitle">
+            Dokumentasi perancangan topologi nyata yang telah diuji pada simulator GNS3, Cisco Packet Tracer, dan EVE-NG.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">Semua Lab</button>
+          <button class="filter-btn" data-filter="routing">Routing & Switching</button>
+          <button class="filter-btn" data-filter="security">Security & Firewall</button>
+          <button class="filter-btn" data-filter="automation">Network Automation</button>
+          <button class="filter-btn" data-filter="monitoring">Monitoring & NOC</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projects-container">
+          <!-- Dynamically populated by main.js from projects-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CERTIFICATIONS & ROADMAP
+         ====================================================================== -->
+    <section id="certifications" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CREDENTIALS & ROADMAP</span>
+          <h2 class="section-title">Sertifikasi & <span class="highlight">Pencapaian Kompetensi</span></h2>
+          <p class="section-subtitle">
+            Standarisasi industri vendor dan lembaga netral untuk memvalidasi pemahaman teori dan praktikum.
+          </p>
+        </div>
+
+        <div class="certs-grid" id="certs-container">
+          <!-- Dynamically populated by main.js from projects-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTACT SECTION
+         ====================================================================== -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">COMMUNICATION LINK</span>
+          <h2 class="section-title">Hubungi Untuk <span class="highlight">Kolaborasi & Magang</span></h2>
+          <p class="section-subtitle">
+            Terbuka untuk posisi Magang (Internship), Junior Network Engineer, NOC Analyst, atau project kolaborasi infrastruktur.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card">
+            <div>
+              <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem;">Konektivitas Langsung</h3>
+              <p style="font-size: 0.95rem;">Mari berdiskusi mengenai arsitektur jaringan, otomasi, atau peluang karir.</p>
+            </div>
+
+            <div class="contact-direct-list">
+              <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-detail">
+                  <h5>Alamat Email</h5>
+                  <a href="mailto:network.engineer@student.ac.id">network.engineer@student.ac.id</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">💼</div>
+                <div class="contact-detail">
+                  <h5>LinkedIn Profile</h5>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener">linkedin.com/in/network-engineer</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">🐙</div>
+                <div class="contact-detail">
+                  <h5>GitHub Repository</h5>
+                  <a href="https://github.com" target="_blank" rel="noopener">github.com/network-eng-labs</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-detail">
+                  <h5>Lokasi Domisili</h5>
+                  <p>Indonesia (WIB / UTC+7)</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+              <a href="#hero" class="btn btn-secondary" style="width: 100%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Unduh Curriculum Vitae (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contact-form">
+            <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem;">Kirim Pesan ke NOC Desk</h3>
+            
+            <div class="form-group">
+              <label class="form-label" for="form-name">Nama Lengkap / Instansi</label>
+              <input type="text" id="form-name" class="form-control" placeholder="Contoh: Budi Santoso / PT Solusi Jaringan" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-email">Alamat Email Respon</label>
+              <input type="email" id="form-email" class="form-control" placeholder="nama@perusahaan.co.id" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-subject">Topik Diskusi</label>
+              <input type="text" id="form-subject" class="form-control" placeholder="Penawaran Internship / Diskusi Lab / Lainnya" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-message">Pesan / Rincian Kebutuhan</label>
+              <textarea id="form-message" class="form-control" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span>Transmisikan Pesan</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span class="brand-icon">⚡</span>
+        <span style="font-family: var(--font-mono); font-weight: 700;">NET://NOC PORTFOLIO</span>
+        <span>— Dirancang untuk Mahasiswa Network Engineer</span>
+      </div>
+
+      <div class="footer-telemetry">
+        <span>● BGP PEERING: SYNCHRONIZED</span> | 
+        <span>TTL: 64</span> | 
+        <span>MTU: 1500</span>
+      </div>
+
+      <div>
+        <span>© 2026. Clean Code & Modular Architecture.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       PROJECT DETAILS MODAL INSPECTOR
+       ======================================================================== -->
+  <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-project-title" style="font-size: 1.25rem; font-family: var(--font-mono); color: var(--cyan-primary);">
+          Detail Lab
+        </h3>
+        <button class="modal-close" id="modal-close-btn" aria-label="Tutup modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-project-body">
+        <!-- Injected dynamically by main.js openProjectDetails() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules in proper dependency order -->
+  <script src="assets/js/projects-data.js"></script>
+  <script src="assets/js/topology.js"></script>
+  <script src="assets/js/terminal.js"></script>
+  <script src="assets/js/subnet-calc.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

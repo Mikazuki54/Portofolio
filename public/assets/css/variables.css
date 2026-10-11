@@ -1,0 +1,60 @@
+/* ==========================================================================
+   CSS VARIABLES & DESIGN TOKENS
+   Theme: Retro Cyber Pixel Art & 8-Bit Arcade (Networking + IoT)
+   ========================================================================== */
+
+:root {
+  /* Core 8-Bit & Arcade Dark Palette */
+  --bg-primary: #0c101d;
+  --bg-secondary: #13192e;
+  --bg-tertiary: #1c2442;
+  --bg-card: #151c33;
+  --bg-card-hover: #1c2647;
+  --bg-terminal: #070913;
+  --bg-arcade: #090c16;
+
+  /* Neon Pixel Signal Colors */
+  --pixel-cyan: #00f0ff;
+  --pixel-cyan-glow: rgba(0, 240, 255, 0.45);
+  --pixel-green: #00ff66;
+  --pixel-green-glow: rgba(0, 255, 102, 0.45);
+  --pixel-pink: #ff007f;
+  --pixel-pink-glow: rgba(255, 0, 127, 0.45);
+  --pixel-yellow: #ffbe0b;
+  --pixel-yellow-glow: rgba(255, 190, 11, 0.4);
+  --pixel-purple: #a855f7;
+  --pixel-red: #ff3366;
+  --pixel-blue: #3a86ff;
+
+  /* Text Colors */
+  --text-main: #f0f4fc;
+  --text-muted: #9aa8cc;
+  --text-dim: #62729c;
+  --text-pixel-accent: #00f0ff;
+  --text-pixel-code: #00ff66;
+
+  /* Pixel Borders & Chunky Box Shadows (Pure 8-Bit) */
+  --pixel-border-color: #00f0ff;
+  --pixel-border-subtle: #2a3558;
+  --pixel-border-dark: #000000;
+  
+  --pixel-box-shadow: 4px 4px 0px #000000;
+  --pixel-box-shadow-hover: 6px 6px 0px #000000, 0 0 15px var(--pixel-cyan-glow);
+  --pixel-box-shadow-pressed: 1px 1px 0px #000000;
+  --pixel-panel-border: 3px solid #2a3558;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', monospace, cursive;
+  --font-retro: 'VT323', monospace;
+  --font-code: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Pixel Shape Geometry (Sharp & Stepped) */
+  --pixel-radius: 0px;
+  --transition-pixel: 0.1s steps(2);
+  --transition-smooth: 0.2s ease;
+
+  /* Layout Standards */
+  --max-width: 1240px;
+  --header-height: 76px;
+}

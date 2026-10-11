@@ -1,0 +1,181 @@
+/* ==========================================================================
+   BASE STYLES & PIXEL THEME RESET
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Retro CRT Scanlines & Pixel Grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(18, 16, 38, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.6;
+}
+
+/* Background 16-Bit Ambient Pattern */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Typography Helpers with Pixel Art Heading */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  font-family: var(--font-pixel);
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all var(--transition-pixel);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, svg {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3.5rem auto;
+}
+
+/* Pixel Section Tag / Badge */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-pixel);
+  font-size: 0.72rem;
+  color: var(--pixel-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  background: #0f152b;
+  border: 2px solid var(--pixel-cyan);
+  box-shadow: 3px 3px 0px #000;
+  margin-bottom: 1.25rem;
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 0px #000;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+.highlight {
+  color: var(--pixel-cyan);
+  text-shadow: 0 0 10px var(--pixel-cyan-glow);
+}
+
+.highlight-green {
+  color: var(--pixel-green);
+  text-shadow: 0 0 10px var(--pixel-green-glow);
+}
+
+.highlight-pink {
+  color: var(--pixel-pink);
+  text-shadow: 0 0 10px var(--pixel-pink-glow);
+}
+
+.highlight-yellow {
+  color: var(--pixel-yellow);
+  text-shadow: 0 0 10px var(--pixel-yellow-glow);
+}
+
+/* Chunky Pixel Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090c16;
+  border-left: 2px solid #1c2442;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pixel-cyan);
+  box-shadow: inset -2px -2px 0px #000, inset 2px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pixel-green);
+}

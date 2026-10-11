@@ -1,0 +1,35 @@
+/* ==========================================================================
+   MAIN STYLE AGGREGATOR
+   8-Bit Pixel Art Theme (Network & IoT Engineering)
+   ========================================================================== */
+
+@import url('variables.css');
+@import url('base.css');
+@import url('components.css');
+@import url('sections.css');
+
+/* Pixelated Blinking Cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 16px;
+  background-color: var(--pixel-cyan);
+  vertical-align: middle;
+  animation: pixel-blink 0.8s steps(2) infinite;
+}
+
+@keyframes pixel-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Subtle 8-Bit Hover Jitter */
+.pixel-hover-bounce:hover {
+  animation: pixel-bounce 0.2s steps(2);
+}
+
+@keyframes pixel-bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}

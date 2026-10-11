@@ -1,0 +1,350 @@
+/* ==========================================================================
+   COMPONENTS - RETRO 8-BIT & PIXEL THEME
+   Buttons, Panels, Terminal, RPG HUD, Pixel Badges, Modals
+   ========================================================================== */
+
+/* Pixel Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.4rem;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+  border: 2px solid #000000;
+  box-shadow: var(--pixel-box-shadow);
+  cursor: pointer;
+  transition: all var(--transition-pixel);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  user-select: none;
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--pixel-box-shadow-pressed);
+}
+
+.btn-primary {
+  background: var(--pixel-cyan);
+  color: #070a14;
+}
+
+.btn-primary:hover {
+  background: #38f4ff;
+  transform: translate(-2px, -2px);
+  box-shadow: var(--pixel-box-shadow-hover);
+}
+
+.btn-secondary {
+  background: #182038;
+  color: var(--text-main);
+  border: 2px solid var(--pixel-border-subtle);
+}
+
+.btn-secondary:hover {
+  background: #222d4f;
+  border-color: var(--pixel-cyan);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--pixel-box-shadow-hover);
+}
+
+.btn-iot {
+  background: var(--pixel-green);
+  color: #070a14;
+}
+
+.btn-iot:hover {
+  background: #47ff78;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000, 0 0 15px var(--pixel-green-glow);
+}
+
+.btn-terminal {
+  background: #141a2e;
+  color: var(--pixel-yellow);
+  border: 2px solid var(--pixel-yellow);
+}
+
+.btn-terminal:hover {
+  background: #1f2847;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000, 0 0 15px var(--pixel-yellow-glow);
+}
+
+.btn-sm {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.65rem;
+}
+
+/* Pixel Status Pill & 8-Bit Blink LED */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.9rem;
+  background: #0f152b;
+  border: 2px solid var(--pixel-green);
+  box-shadow: 3px 3px 0px #000;
+  font-size: 0.7rem;
+  font-family: var(--font-pixel);
+  color: var(--pixel-green);
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--pixel-green);
+  box-shadow: 0 0 8px var(--pixel-green);
+  animation: pixel-blink 1s steps(2) infinite;
+}
+
+@keyframes pixel-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Retro Pixel Panels */
+.glass-panel, .pixel-card {
+  background: var(--bg-card);
+  border: 3px solid var(--pixel-border-subtle);
+  border-radius: 0;
+  box-shadow: var(--pixel-box-shadow);
+  padding: 1.75rem;
+  transition: all var(--transition-pixel);
+  position: relative;
+}
+
+.glass-panel:hover, .pixel-card:hover {
+  border-color: var(--pixel-cyan);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--pixel-box-shadow-hover);
+}
+
+/* Retro Arcade Terminal Component */
+.terminal-card {
+  background: var(--bg-terminal);
+  border: 3px solid var(--pixel-cyan);
+  box-shadow: 6px 6px 0px #000, 0 0 20px var(--pixel-cyan-glow);
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-header {
+  background: #12182b;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--pixel-cyan);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 0;
+  border: 1px solid #000;
+}
+
+.terminal-dot.red { background: var(--pixel-pink); }
+.terminal-dot.yellow { background: var(--pixel-yellow); }
+.terminal-dot.green { background: var(--pixel-green); }
+
+.terminal-title {
+  font-family: var(--font-pixel);
+  font-size: 0.68rem;
+  color: var(--pixel-cyan);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+  color: #c7f9cc;
+  min-height: 280px;
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background-image: linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 8px;
+}
+
+.terminal-line {
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.terminal-line.output { color: #a4b2d6; }
+.terminal-line.success { color: var(--pixel-green); }
+.terminal-line.info { color: var(--pixel-cyan); }
+.terminal-line.warning { color: var(--pixel-yellow); }
+.terminal-line.error { color: var(--pixel-red); }
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: #090c17;
+  border-top: 2px solid #1c2647;
+}
+
+.terminal-prompt {
+  color: var(--pixel-cyan);
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  user-select: none;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  caret-color: var(--pixel-cyan);
+}
+
+.terminal-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: #0c101e;
+  border-top: 2px solid #1c2647;
+}
+
+.chip-btn {
+  background: #141c33;
+  border: 2px solid #28365f;
+  box-shadow: 2px 2px 0px #000;
+  color: var(--text-muted);
+  font-family: var(--font-pixel);
+  font-size: 0.62rem;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: all var(--transition-pixel);
+}
+
+.chip-btn:hover {
+  background: #1b2647;
+  color: var(--pixel-cyan);
+  border-color: var(--pixel-cyan);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+/* Modals (8-Bit Arcade Style) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 8, 16, 0.9);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  padding: 1.5rem;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border: 4px solid var(--pixel-cyan);
+  border-radius: 0;
+  width: 100%;
+  max-width: 820px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 8px 8px 0px #000, 0 0 30px var(--pixel-cyan-glow);
+  position: relative;
+}
+
+.modal-header {
+  padding: 1.25rem 1.5rem;
+  background: #101528;
+  border-bottom: 3px solid var(--pixel-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-close {
+  background: #1c2442;
+  border: 2px solid var(--pixel-pink);
+  box-shadow: 2px 2px 0px #000;
+  color: var(--pixel-pink);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+}
+
+.modal-close:hover {
+  background: var(--pixel-pink);
+  color: #000;
+}
+
+.modal-body {
+  padding: 1.75rem;
+}
+
+/* Retro Pixel Toast Notification */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast {
+  background: #13192f;
+  border: 3px solid var(--pixel-green);
+  color: #fff;
+  padding: 0.9rem 1.35rem;
+  box-shadow: 5px 5px 0px #000, 0 0 15px var(--pixel-green-glow);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-pixel);
+  font-size: 0.72rem;
+  animation: pixel-slide 0.2s steps(4);
+}
+
+@keyframes pixel-slide {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
